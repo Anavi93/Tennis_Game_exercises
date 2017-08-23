@@ -7,6 +7,8 @@ var ballX=50;
 var ballSpeedX=14;
 var ballY=50;
 var ballSpeedY=4;
+const MIN_VER_SPEED=5;
+const MAX_VER_SPEED=9;
 
 var paddle1Y=250;
 var paddle2Y=250;
@@ -60,6 +62,10 @@ window.onload=function(){
 function ballReset(){
 	if(player1Score>=WINNING_SCORE || player2Score>=WINNING_SCORE){
 		showingWinScreen=true;
+	}
+	ballSpeedY=Math.random()*(MAX_VER_SPEED-MIN_VER_SPEED)+MIN_VER_SPEED;
+	if(Math.random()>0.5){
+	ballSpeedY=-ballSpeedY;	
 	}
 	ballSpeedX=-ballSpeedX;
 	ballX=canvas.width/2;
