@@ -25,13 +25,7 @@ function imageLoadingDoneSoStartGame(){
 			drawEverything();
 	},1000/framesPerSecond);
 	
-	canvas.addEventListener('mousedown',handleMouseClick);
-	
-	canvas.addEventListener('mousemove', 
-			function(evt){
-					var mousePos=calculateMousePos(evt);
-					paddle1Y=mousePos.y-(PADDLE_HEIGHT/2);
-	});
+	setupInput();
 }
 
 	
@@ -40,7 +34,7 @@ function imageLoadingDoneSoStartGame(){
 function moveEverything(){
 		if(showingWinScreen)
 			return;
-	    computerMovement();
+	    paddleMove();
 		ballMove();
 		
 }
