@@ -61,12 +61,12 @@ function drawEverything(){
 	if(showingWinScreen){
 		canvasContext.fillStyle='white';
 		if(player1Score>=WINNING_SCORE){
-			canvasContext.fillText('Player 1 won!!!',350,200);
+			canvasContext.fillText('Player 1 won!!!',370,200);
 		} 
 		else if(player2Score>=WINNING_SCORE){
-			canvasContext.fillText('Player 2 won!!!',350,200);
+			canvasContext.fillText('Player 2 won!!!',370,200);
 		}
-		canvasContext.fillText('click to continue',350,500);
+		canvasContext.fillText('click to continue',365,400);
 		return;
 		}
 	//crtamo mrezu
