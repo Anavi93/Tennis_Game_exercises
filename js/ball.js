@@ -3,8 +3,8 @@ var ballSpeedX=12;
 var ballY=50;
 var ballSpeedY=4;
 const START_HOR_SPEED=12;
-const MIN_VER_SPEED=5;
-const MAX_VER_SPEED=9;
+const MIN_VER_SPEED=3;
+const MAX_VER_SPEED=6;
 
 var hitsTaken=0;
 
@@ -23,11 +23,8 @@ function ballReset(){
 }
 
 function ballMove(){
-ballX = ballX + ballSpeedX;
-		ballY = ballY + ballSpeedY;
-
-		if(ballX<0)
-			if(ballY>paddle1Y && ballY<paddle1Y+PADDLE_HEIGHT){
+		if(ballX<paddle1X+10)
+			if(ballY>paddle1Y && ballY<paddle1Y+PADDLE_HEIGHT && ballX>paddle1X){
 				ballSpeedX=-ballSpeedX;
 				var deltaY=ballY-(paddle1Y+PADDLE_HEIGHT/2);
 				ballSpeedY=deltaY*0.35;
@@ -43,11 +40,13 @@ ballX = ballX + ballSpeedX;
 			}
 			else{
 			//mora biti ispred reset-a da bismo mogli da postavimo win condition
-				player2Score++;
-				ballReset();
+				if(ballX<0){
+					player2Score++;
+					ballReset();
+				}
 			}
-		if(ballX>canvas.width-5)
-			if(ballY>paddle2Y && ballY<paddle2Y+PADDLE_HEIGHT){
+		if(ballX>paddle2X-5){
+			if(ballY>paddle2Y && ballY<paddle2Y+PADDLE_HEIGHT && ballX<paddle2X+5 ){
 				ballSpeedX=-ballSpeedX;
 				var deltaY=ballY-(paddle2Y+PADDLE_HEIGHT/2);
 				ballSpeedY=deltaY*0.35;	
@@ -58,18 +57,25 @@ ballX = ballX + ballSpeedX;
 				}
 				if(hitsTaken==12){
 					ballSpeedY=ballSpeedY*1.7;
-					ballSpeedX=ballSpeedX*1.7;
+					ballSpeedX=9;
 				}
 			}
 			else{
-				player1Score++;
-				ballReset();
+				if(ballX>canvas.width-5){
+					player1Score++;
+					ballReset();
+				}
 			}
+		}
 		if(ballY<0)
 			ballSpeedY=-ballSpeedY;
 		
 		if(ballY>canvas.height-5)
 			ballSpeedY=-ballSpeedY;
+		
+		ballX = ballX + ballSpeedX;
+		ballY = ballY + ballSpeedY;
+
 }
 
 function ballDraw(){

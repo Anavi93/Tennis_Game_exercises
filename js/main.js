@@ -76,8 +76,8 @@ function drawEverything(){
 	//crtamo lopticu
 	ballDraw();
 	//ispisujemo text
-	canvasContext.fillText('Player 1',100,100);
-	canvasContext.fillText('Player 2',canvas.width-130,100);
-	canvasContext.fillText(player1Score,115,115);
-	canvasContext.fillText(player2Score,canvas.width-115,115);
+	canvasContext.fillText('Player 1',150,100);
+	canvasContext.fillText('Player 2',canvas.width-180,100);
+	canvasContext.fillText(player1Score,165,115);
+	canvasContext.fillText(player2Score,canvas.width-165,115);
 }
