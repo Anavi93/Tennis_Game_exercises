@@ -6,6 +6,7 @@ var player2Score=0;
 
 const WINNING_SCORE=11;
 
+var showingStartMenu=true;
 var showingWinScreen=false;
 
 window.onload=function(){
@@ -28,9 +29,6 @@ function imageLoadingDoneSoStartGame(){
 	setupInput();
 }
 
-	
-
-
 function moveEverything(){
 		if(showingWinScreen)
 			return;
@@ -44,7 +42,6 @@ function drawNet(){
 		colorRect(canvas.width/2-1,i,2,20,'white');
 	}
 }
-
 
 function drawEverything(){
 	//sledeca linija ispunjava ekran crninom
@@ -60,9 +57,16 @@ function drawEverything(){
 		else if(player2Score>=WINNING_SCORE){
 			canvasContext.fillText('Player 2 won!!!',370,200);
 		}
-		canvasContext.fillText('click to continue',365,400);
+		canvasContext.fillText('Move paddles with mouse or keys and hit ball every time',275,250);
+		canvasContext.fillText('press 1 for single player and 2 for two-player mode',285,350);
 		return;
 		}
+	if(showingStartMenu){
+		canvasContext.fillStyle='white';
+		canvasContext.fillText('Move paddles with mouse or keys and hit ball every time',275,250);
+		canvasContext.fillText('press 1 for single player and 2 for two-player mode',285,350);
+		return;
+	}
 	//crtamo mrezu
 	drawNet();
 	//crtamo igrace

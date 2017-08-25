@@ -8,6 +8,9 @@ const KEY_D=68;
 const KEY_S=83;
 const KEY_A=65;
 
+const KEY_1=49;
+const KEY_2=50;
+
 var mouseX=0;
 var mouseY=0;
 
@@ -26,16 +29,14 @@ var twoPlayerMode=true;
 function setupInput(){
 	
 	canvas.addEventListener('mousedown',handleMouseClick);
-	if(!twoPlayerMode){
-		canvas.addEventListener('mousemove', 
-				function(evt){
-						var mousePos=calculateMousePos(evt);
+	canvas.addEventListener('mousemove', 
+			function(evt){
+					var mousePos=calculateMousePos(evt);
+					if(!twoPlayerMode)
 						paddle1Y=mousePos.y-(PADDLE_HEIGHT/2);
-		});
-	}else{
-		document.addEventListener('keydown',keyPressed);
-		document.addEventListener('keyup',keyReleased);
-	}	
+	});
+	document.addEventListener('keydown',keyPressed);
+	document.addEventListener('keyup',keyReleased);	
 
 }
 
@@ -53,6 +54,17 @@ function keySet(keyEvent,setTo){
 	if(keyEvent.keyCode==controlKeyFor2Down){
 		player2DownKey=setTo;
 	}
+	if(keyEvent.keyCode==KEY_1){
+		showingStartMenu=false;
+		showingWinScreen=false;
+		twoPlayerMode=false;
+	}
+	if(keyEvent.keyCode==KEY_2){
+		showingStartMenu=false;
+		showingWinScreen=false;
+		twoPlayerMode=true;
+	}
+		
 	
 }
 
