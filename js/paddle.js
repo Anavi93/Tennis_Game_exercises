@@ -14,7 +14,10 @@ function computerMovement(){
 
 function paddlesDraw(){
 	//crtamo prvog igraca, buhahahaha
-	colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
+	//colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
+	canvasContext.drawImage(playerPic,0,paddle1Y);
 	//crtamo AI igraca
-	colorRect(canvas.width-PADDLE_THICKNESS,paddle2Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
+	//colorRect(canvas.width-PADDLE_THICKNESS,paddle2Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
+	canvasContext.drawImage(computerPic,canvas.width-PADDLE_THICKNESS,paddle2Y);
+
 }

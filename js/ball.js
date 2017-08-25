@@ -74,5 +74,6 @@ ballX = ballX + ballSpeedX;
 
 function ballDraw(){
 	//crtamo lopticu
-	colorCircle(ballX,ballY,10,'white');
+	//colorCircle(ballX,ballY,10,'white');
+	drawBitmapCentered(ballPic,ballX,ballY);
 }

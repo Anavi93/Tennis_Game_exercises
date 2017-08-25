@@ -8,3 +8,10 @@ function colorRect(leftX,topY, width,height,drawColor){
 	canvasContext.fillStyle=drawColor;
 	canvasContext.fillRect(leftX,topY,width,height);
 }
+
+function drawBitmapCentered(useBitmap,atX,atY){
+	canvasContext.save();
+	canvasContext.translate(atX,atY);
+	canvasContext.drawImage(useBitmap, -useBitmap.width/2, -useBitmap.height/2);
+	canvasContext.restore();
+}

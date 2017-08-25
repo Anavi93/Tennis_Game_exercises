@@ -11,7 +11,15 @@ var showingWinScreen=false;
 window.onload=function(){
 	canvas=document.getElementById('gameCanvas');
 	canvasContext=canvas.getContext('2d');
-	var framesPerSecond=30
+	
+	canvasContext.fillText("LOADING IMAGES", canvas.width/2, canvas.height/2);
+	
+	loadImages();
+		
+}
+
+function imageLoadingDoneSoStartGame(){
+	var framesPerSecond=30;
 	setInterval(function() {
 			moveEverything();
 			drawEverything();
@@ -23,9 +31,11 @@ window.onload=function(){
 			function(evt){
 					var mousePos=calculateMousePos(evt);
 					paddle1Y=mousePos.y-(PADDLE_HEIGHT/2);
-	})
-	
+	});
 }
+
+	
+
 
 function moveEverything(){
 		if(showingWinScreen)
@@ -45,6 +55,8 @@ function drawNet(){
 function drawEverything(){
 	//sledeca linija ispunjava ekran crninom
 	colorRect(0,0,canvas.width,canvas.height,'black');
+	canvasContext.drawImage(terrainPic,0,0);
+
 	//ako je ispunjen uslov za pobedu ispisi ko je pobednik i cekaj klik
 	if(showingWinScreen){
 		canvasContext.fillStyle='white';
