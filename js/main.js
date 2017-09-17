@@ -37,9 +37,9 @@ function moveEverything(){
 		
 }
 
-function drawNet(){
+function drawNet(drawX,drawColor){
 	for(var i=0; i<canvas.height; i+=40){
-		colorRect(canvas.width/2-1,i,2,20,'white');
+		colorRect(drawX-1,i,2,20,drawColor);
 	}
 }
 
@@ -68,14 +68,17 @@ function drawEverything(){
 		return;
 	}
 	//crtamo mrezu
-	drawNet();
+	drawNet(canvas.width/2,'white');
+	drawNet(paddle1X,'black');
+	drawNet(paddle2X, 'black');
 	//crtamo igrace
 	paddlesDraw();
 	//crtamo lopticu
 	ballDraw();
 	//ispisujemo text
+	canvasContext.fillStyle='white';
 	canvasContext.fillText('Player 1',150,100);
 	canvasContext.fillText('Player 2',canvas.width-180,100);
-	canvasContext.fillText(player1Score,165,115);
-	canvasContext.fillText(player2Score,canvas.width-165,115);
+	drawBlockyNumber(player1Score,160,115);
+	drawBlockyNumber(player2Score,canvas.width-170,115);
 }
