@@ -6,8 +6,12 @@ const START_HOR_SPEED=9;
 const MAX_HOR_SPEED=15;
 const MIN_VER_SPEED=4;
 const MAX_VER_SPEED=8;
+const NUM_POS_TO_SAVE=7;
 
 var hitsTaken=0;
+//setting up array that saves previous ball position for trail
+var savedX=[];
+var savedY=[];
 
 function ballReset(){
 	if(player1Score>=WINNING_SCORE || player2Score>=WINNING_SCORE){
@@ -20,6 +24,11 @@ function ballReset(){
 	ballSpeedX=-ballSpeedX/Math.abs(ballSpeedX)*START_HOR_SPEED;
 	ballX=canvas.width/2;
 	ballY=canvas.height/2;
+	//setting up start trail position on the ball
+	for(var i=0; i<NUM_POS_TO_SAVE;i++){
+		savedX[i]=ballX;
+		savedY[i]=ballY;
+	}
 	hitsTaken=0;
 }
 
@@ -73,14 +82,23 @@ function ballMove(){
 		
 		if(ballY>canvas.height-5)
 			ballSpeedY=-ballSpeedY;
-		
+		for(var i=NUM_POS_TO_SAVE-1; i>0; i--){
+			savedX[i]=savedX[i-1];
+			savedY[i]=savedY[i-1];		
+		}
+		savedX[0]=ballX;
+		savedY[0]=ballY;
 		ballX = ballX + ballSpeedX;
 		ballY = ballY + ballSpeedY;
 
 }
 
 function ballDraw(){
-	//crtamo lopticu
-	//colorCircle(ballX,ballY,10,'white');
+	//drawing trail
+	for(var i=0; i<NUM_POS_TO_SAVE; i++){
+		var op=1.0-(i+3)/10.0;
+		colorCircleTransparent(savedX[i],savedY[i],8-i,'255,255,255',op);
+	}
+	//drawing ball
 	drawBitmapCentered(ballPic,ballX,ballY);
 }

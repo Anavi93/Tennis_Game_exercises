@@ -89,8 +89,8 @@ function drawBlockyDigit(x,y,n){
 
 function drawBlockyNumber(n,x,y){
 	if(n>9){
-		drawBlockyDigit(x,y,n/10);
-		drawBlockyDigit(x+NUM_W+OFFSET,y,n%10);
+		drawBlockyDigit(x-NUM_W,y,n/10);
+		drawBlockyDigit(x+OFFSET,y,n%10);
 	}
 	else
 		drawBlockyDigit(x,y,n);
