@@ -33,10 +33,11 @@ function ballReset(){
 }
 
 function ballMove(){
-		if(ballX<paddle1X+15)
-			if(ballY>paddle1Y && ballY<paddle1Y+PADDLE_HEIGHT && ballX>paddle1X-5){
+		if(ballX+ballSpeedX<=paddle1X){
+			var interY=Math.abs((paddle1X-ballX)/ballSpeedX*1.0)*ballSpeedY+ballY;
+			if(interY>paddle1Y && interY<paddle1Y+PADDLE_HEIGHT && ballX>paddle1X-5){
 				ballSpeedX=-ballSpeedX;
-				var deltaY=ballY-(paddle1Y+PADDLE_HEIGHT/2);
+				var deltaY=interY-(paddle1Y+PADDLE_HEIGHT/2);
 				ballSpeedY=deltaY*0.35;
 				hitsTaken++;
 				if(hitsTaken==4){
@@ -55,7 +56,8 @@ function ballMove(){
 					ballReset();
 				}
 			}
-		if(ballX>paddle2X-15){
+		}
+		if(ballX>paddle2X-10){
 			if(ballY>paddle2Y && ballY<paddle2Y+PADDLE_HEIGHT && ballX<paddle2X+5){
 				ballSpeedX=-ballSpeedX;
 				var deltaY=ballY-(paddle2Y+PADDLE_HEIGHT/2);

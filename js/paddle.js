@@ -49,9 +49,9 @@ function computerMovement(){
 			//randomizing expected interception so the AI can sometimes make a mistake
 			interY=interY-50+Math.random()*100;
 		}
-		if(paddle2YCenter-20<interY && paddle2YCenter<canvas.height)
+		if(paddle2YCenter-10<interY && paddle2YCenter<canvas.height)
 			paddle2Y += PADDLE_SPEED;
-		if(paddle2YCenter+20>interY && paddle2YCenter>0)
+		if(paddle2YCenter+10>interY && paddle2YCenter>0)
 			paddle2Y -= PADDLE_SPEED;
 	}
 	
