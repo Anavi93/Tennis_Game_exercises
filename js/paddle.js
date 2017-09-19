@@ -2,11 +2,13 @@ const PADDLE_HEIGHT=80;
 const PADDLE_THICKNESS=10;
 const PADDLE_DIST_FROM_EDGE=Math.floor(document.getElementById("gameCanvas").width*0.15);
 const PADDLE_SPEED=6;
+const BLOCKED_CORNER_DIST=10;
 
 var paddle1X=PADDLE_DIST_FROM_EDGE;
 var paddle2X=document.getElementById("gameCanvas").width-PADDLE_DIST_FROM_EDGE;
 var paddle1Y=250;
 var paddle2Y=250;
+
 
 //global variable for ball interception with player2 area
 var interY=0;
@@ -49,9 +51,9 @@ function computerMovement(){
 			//randomizing expected interception so the AI can sometimes make a mistake
 			interY=interY-50+Math.random()*100;
 		}
-		if(paddle2YCenter-10<interY && paddle2YCenter<canvas.height)
+		if(paddle2YCenter-10<interY && paddle2Y<canvas.height-PADDLE_HEIGHT-BLOCKED_CORNER_DIST)
 			paddle2Y += PADDLE_SPEED;
-		if(paddle2YCenter+10>interY && paddle2YCenter>0)
+		if(paddle2YCenter+10>interY && paddle2Y>BLOCKED_CORNER_DIST)
 			paddle2Y -= PADDLE_SPEED;
 	}
 	
@@ -61,13 +63,13 @@ function paddleMove(){
 	if(!twoPlayerMode){
 		computerMovement();
 	}else{
-		if(player1UpKey && paddle1Y>0)
+		if(player1UpKey && paddle1Y>BLOCKED_CORNER_DIST)
 			paddle1Y-=PADDLE_SPEED;
-		if(player1DownKey && paddle1Y<canvas.height-PADDLE_HEIGHT)
+		if(player1DownKey && paddle1Y<canvas.height-PADDLE_HEIGHT-BLOCKED_CORNER_DIST)
 			paddle1Y+=PADDLE_SPEED;
-		if(player2UpKey && paddle2Y>0)
+		if(player2UpKey && paddle2Y>BLOCKED_CORNER_DIST)
 			paddle2Y-=PADDLE_SPEED;
-		if(player2DownKey && paddle2Y<canvas.height-PADDLE_HEIGHT)
+		if(player2DownKey && paddle2Y<canvas.height-PADDLE_HEIGHT-BLOCKED_CORNER_DIST)
 			paddle2Y+=PADDLE_SPEED;
 	}
 	
