@@ -50,15 +50,16 @@ function ballMove(){
 				}
 			}
 			else{
-			//mora biti ispred reset-a da bismo mogli da postavimo win condition
+			//has to be before reset so we can setup win condition
 				if(ballX<0){
 					player2Score++;
 					ballReset();
 				}
 			}
 		}
-		if(ballX>paddle2X-10){
-			if(ballY>paddle2Y && ballY<paddle2Y+PADDLE_HEIGHT && ballX<paddle2X+5){
+		if(ballX+ballSpeedX>=paddle2X){
+			var interY=Math.abs((paddle2X-ballX)/ballSpeedX*1.0)*ballSpeedY+ballY;
+			if(interY>paddle2Y && interY<paddle2Y+PADDLE_HEIGHT && ballX<paddle2X+5){
 				ballSpeedX=-ballSpeedX;
 				var deltaY=ballY-(paddle2Y+PADDLE_HEIGHT/2);
 				ballSpeedY=deltaY*0.35;	

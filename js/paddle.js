@@ -49,7 +49,7 @@ function computerMovement(){
 					interY=(k-k1)*(-ballSpeedY);
 			}
 			//randomizing expected interception so the AI can sometimes make a mistake
-			interY=interY-50+Math.random()*100;
+			interY=interY-45+Math.random()*90;
 		}
 		if(paddle2YCenter-10<interY && paddle2Y<canvas.height-PADDLE_HEIGHT-BLOCKED_CORNER_DIST)
 			paddle2Y += PADDLE_SPEED;
@@ -76,10 +76,10 @@ function paddleMove(){
 }
 
 function paddlesDraw(){
-	//crtamo prvog igraca, buhahahaha
+	//drawing first player
 	//colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
 	canvasContext.drawImage(playerPic,paddle1X,paddle1Y);
-	//crtamo AI igraca
+	//drawing second player
 	//colorRect(canvas.width-PADDLE_THICKNESS,paddle2Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
 	canvasContext.drawImage(computerPic,paddle2X-PADDLE_THICKNESS,paddle2Y);
 

@@ -30,7 +30,7 @@ function imageLoadingDoneSoStartGame(){
 }
 
 function moveEverything(){
-		if(showingWinScreen)
+		if(showingWinScreen || showingStartMenu)
 			return;
 	    paddleMove();
 		ballMove();
@@ -44,11 +44,11 @@ function drawNet(drawX,drawColor){
 }
 
 function drawEverything(){
-	//sledeca linija ispunjava ekran crninom
+	//next line fills screen with black
 	colorRect(0,0,canvas.width,canvas.height,'black');
 	canvasContext.drawImage(terrainPic,0,0);
 
-	//ako je ispunjen uslov za pobedu ispisi ko je pobednik i cekaj klik
+	//if winning condition is met write who is the winner and enable replay
 	if(showingWinScreen){
 		canvasContext.fillStyle='white';
 		if(player1Score>=WINNING_SCORE){
@@ -61,24 +61,25 @@ function drawEverything(){
 		canvasContext.fillText('press 1 for single player and 2 for two-player mode',285,350);
 		return;
 		}
-	if(showingStartMenu){
+	else if(showingStartMenu){
 		canvasContext.fillStyle='white';
 		canvasContext.fillText('Move paddles with mouse or keys and hit ball every time',275,250);
 		canvasContext.fillText('press 1 for single player and 2 for two-player mode',285,350);
 		return;
-	}
-	//crtamo mrezu
+	}else
+	//drawing nets
 	drawNet(canvas.width/2,'white');
 	drawNet(paddle1X,'black');
 	drawNet(paddle2X, 'black');
-	//crtamo igrace
+	//drawing players
 	paddlesDraw();
-	//crtamo lopticu
+	//drawing ball
 	ballDraw();
-	//ispisujemo text
+	//writing current scores
 	canvasContext.fillStyle='white';
 	canvasContext.fillText('Player 1',150,100);
 	canvasContext.fillText('Player 2',canvas.width-180,100);
 	drawBlockyNumber(player1Score,160,115);
 	drawBlockyNumber(player2Score,canvas.width-170,115);
+
 }
