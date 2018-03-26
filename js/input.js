@@ -32,8 +32,13 @@ function setupInput(){
 	canvas.addEventListener('mousemove', 
 			function(evt){
 					var mousePos=calculateMousePos(evt);
-					if(!twoPlayerMode)
+					if(!twoPlayerMode){
 						paddle1Y=mousePos.y-(PADDLE_HEIGHT/2);
+						if(paddle1Y<BLOCKED_CORNER_DIST)
+							paddle1Y=BLOCKED_CORNER_DIST;
+						if(paddle1Y>canvas.height-PADDLE_HEIGHT-BLOCKED_CORNER_DIST)
+							paddle1Y=canvas.height-PADDLE_HEIGHT-BLOCKED_CORNER_DIST;
+					}
 	});
 	document.addEventListener('keydown',keyPressed);
 	document.addEventListener('keyup',keyReleased);	
@@ -58,11 +63,15 @@ function keySet(keyEvent,setTo){
 		showingStartMenu=false;
 		showingWinScreen=false;
 		twoPlayerMode=false;
+		player1Score=0;
+		player2Score=0;
 	}
 	if(keyEvent.keyCode==KEY_2){
 		showingStartMenu=false;
 		showingWinScreen=false;
 		twoPlayerMode=true;
+		player1Score=0;
+		player2Score=0;
 	}
 		
 	
