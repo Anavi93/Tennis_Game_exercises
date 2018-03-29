@@ -3,7 +3,6 @@ var computerPic=document.createElement("img");
 var ballPic=document.createElement("img");
 var terrainPic=document.createElement("img");
 
-var trackPics=[];
 
 var picsToLoad=0;
 
@@ -23,10 +22,6 @@ function beginLoadingImage(imgVar, fileName){
 	
 }
 
-function loadImageForTrackCode(trackCode, fileName){
-	trackPics[trackCode]=document.createElement("img");
-	beginLoadingImage(trackPics[trackCode],fileName);
-}
 
 function loadImages(){
 	
